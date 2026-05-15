@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: chand-bot
+    env: node
+    buildCommand: npm install
+    startCommand: node index.js
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 20.20.0

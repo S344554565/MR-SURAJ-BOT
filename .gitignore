@@ -1,0 +1,7 @@
+node_modules/
+botdata/
+cookies.txt
+Data/system/appstate.json
+Data/system/sessions.json
+.env
+*.log
