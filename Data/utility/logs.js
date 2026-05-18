@@ -33,16 +33,16 @@ const writeLog = (type, message) => {
 
 const printBanner = () => {
   console.log('');
-  console.log(chalk.cyan(' +================================================+'));
-  console.log(chalk.cyan(' |') + chalk.yellow('   mmm  m    m   mm   mm   m mmmm              ') + chalk.cyan(' |'));
-  console.log(chalk.cyan(' |') + chalk.yellow(' m"   " #    #   ##   #"m  # #   "m            ') + chalk.cyan(' |'));
-  console.log(chalk.cyan(' |') + chalk.green(' #      #mmmm#  #  #  # #m # #    #            ') + chalk.cyan(' |'));
-  console.log(chalk.cyan(' |') + chalk.green(' #      #    #  #mm#  #  # # #    #            ') + chalk.cyan(' |'));
-  console.log(chalk.cyan(' |') + chalk.magenta('  "mmm" #    # #    # #   ## #mmm"             ') + chalk.cyan(' |'));
-  console.log(chalk.cyan(' |') + chalk.red('                                               ') + chalk.cyan(' |'));
-  console.log(chalk.cyan(' |') + chalk.green.bold('       ★  C H A N D   B O T  ★                 ') + chalk.cyan(' |'));
-  console.log(chalk.cyan(' |') + chalk.blue('           Facebook Messenger Bot              ') + chalk.cyan(' |'));
-  console.log(chalk.cyan(' +================================================+'));
+  console.log(chalk.cyan(' +==========================================+'));
+  console.log(chalk.cyan(' |') + chalk.yellow('   mmm  m    m   mm   mm   m mmmm        ') + chalk.cyan(' |'));
+  console.log(chalk.cyan(' |') + chalk.yellow(' m"   " #    #   ##   #"m  # #   "m      ') + chalk.cyan(' |'));
+  console.log(chalk.cyan(' |') + chalk.green(' #      #mmmm#  #  #  # #m # #    #      ') + chalk.cyan(' |'));
+  console.log(chalk.cyan(' |') + chalk.green(' #      #    #  #mm#  #  # # #    #      ') + chalk.cyan(' |'));
+  console.log(chalk.cyan(' |') + chalk.magenta('  "mmm" #    # #    # #   ## #mmm"       ') + chalk.cyan(' |'));
+  console.log(chalk.cyan(' |') + chalk.red('                                         ') + chalk.cyan(' |'));
+  console.log(chalk.cyan(' |') + chalk.green.bold('       ★  C H A N D   B O T  ★           ') + chalk.cyan(' |'));
+  console.log(chalk.cyan(' |') + chalk.blue('           Facebook Messenger Bot        ') + chalk.cyan(' |'));
+  console.log(chalk.cyan(' +==========================================+'));
   console.log('');
 };
 

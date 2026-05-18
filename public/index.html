@@ -1321,21 +1321,7 @@
   </style>
 </head>
 <body>
-  <!-- Logout Banner -->
-  <div id="logoutBanner" class="logout-banner">
-    <div class="logout-modal">
-      <div class="logout-icon">⚠️</div>
-      <div class="logout-content">
-        <h2>Account Logged Out</h2>
-        <p>Your Facebook account has been logged out. Please re-login to continue using the bot.</p>
-        <div style="display:flex;gap:10px;justify-content:center;">
-<button onclick="window.location.href='https://chandtricker.com/tools'" class="logout-btn">
-    🔄 Re-Login 
-</button>          <button onclick="document.getElementById('logoutBanner').classList.remove('show')" class="logout-btn" style="background:#6b7280;">❌ Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
   <!-- Scroll Overlay -->
   <div class="scroll-overlay" onclick="toggleSidebar()"></div>
@@ -1506,6 +1492,7 @@
           <h3>Quick Actions</h3>
         </div>
         <div class="btn-group">
+          <button onclick="updateBot()" class="btn btn-primary">📦 Update Bot</button>
           <button onclick="restartBot()" class="btn btn-primary">🔁 Bot Restart</button>
           <button onclick="restartServer()" class="btn btn-warning">🖥️ Server Restart</button>
         </div>
@@ -1708,8 +1695,6 @@
       if (urlToken) {
         sessionStorage.setItem('auth', 'true');
         sessionStorage.setItem('token', urlToken);
-        const cleanUrl = window.location.origin + window.location.pathname;
-        window.history.replaceState({}, document.title, cleanUrl);
       }
       if (!sessionStorage.getItem('auth')) {
         window.location.href = '/login.html';
@@ -1808,7 +1793,7 @@
       } else if (data.accountIssue) {
         statusDot.className = 'status-dot offline';
         statusText.className = 'status-text offline';
-        statusText.textContent = 'Account Logged Out';
+        statusText.textContent = 'Offline';
       } else {
         statusDot.className = 'status-dot offline';
         statusText.className = 'status-text offline';
@@ -1835,10 +1820,12 @@
       }
       
       const logoutBanner = document.getElementById('logoutBanner');
-      if (data.accountIssue) {
-        logoutBanner.classList.add('show');
-      } else {
-        logoutBanner.classList.remove('show');
+      if (logoutBanner) {
+        if (data.accountIssue) {
+          logoutBanner.classList.add('show');
+        } else {
+          logoutBanner.classList.remove('show');
+        }
       }
       
       // Update terminal title with bot name
@@ -1987,6 +1974,18 @@
         const data = await res.json();
         if (data.success) {
           showAlert('✅ Bot restarted!', 'success');
+        } else {
+          showAlert('❌ ' + (data.error || 'Error'), 'error');
+        }
+      });
+    }
+    async function updateBot() {
+      showConfirm('Update Bot?', 'Update Bot will be reinstalled from npm.', async () => {
+        showAlert('📦 Updating bot...', 'warning');
+        const res = await fetch('/api/update', { method: 'POST' });
+        const data = await res.json();
+        if (data.success) {
+          showAlert('✅ Bot updated! Please restart bot.', 'success');
         } else {
           showAlert('❌ ' + (data.error || 'Error'), 'error');
         }
@@ -2454,7 +2453,7 @@
       const data = await res.json();
       if (data.accountIssue) {
         const banner = document.getElementById('logoutBanner');
-        if (!banner.classList.contains('show')) {
+        if (banner && !banner.classList.contains('show')) {
           banner.classList.add('show');
         }
       }
@@ -2462,6 +2461,9 @@
     
     // Socket.io for real-time logs
     const socket = io();
+    socket.on('connect', () => {
+      loadStatus();
+    });
     socket.on('log', (data) => {
       const terminalEl = document.getElementById('terminalContainer');
       if (terminalEl) {
@@ -2471,22 +2473,34 @@
     
     // Real-time account issue notification
     socket.on('accountIssue', (data) => {
-      const logoutBanner = document.getElementById('logoutBanner');
-      logoutBanner.classList.add('show');
-      showDashboardAlert('🔴 Account Logged Out! Please login again.', 'error');
+      document.getElementById('statusDot').className = 'status-dot offline';
+      document.getElementById('statusText').className = 'status-text offline';
+      document.getElementById('statusText').textContent = 'Offline';
+      document.getElementById('botStatus').className = 'bot-status offline';
+      document.getElementById('botStatus').innerHTML = '<span>OFFLINE</span>';
+      showDashboardAlert('🔴 Bot Offline! Please check the account.', 'error');
     });
     
     // Bot started notification
     socket.on('botStarted', (data) => {
       if (data.success) {
-        showDashboardAlert('✅ Bot is now ONLINE!', 'success');
+        document.getElementById('statusDot').className = 'status-dot online';
+        document.getElementById('statusText').className = 'status-text online';
+        document.getElementById('statusText').textContent = 'Online';
+        document.getElementById('botStatus').className = 'bot-status online';
+        document.getElementById('botStatus').innerHTML = '<span>ONLINE</span>';
         const logoutBanner = document.getElementById('logoutBanner');
-        logoutBanner.classList.remove('show');
+        if (logoutBanner) logoutBanner.classList.remove('show');
+        showDashboardAlert('✅ Bot is now ONLINE!', 'success');
       }
+      loadStatus();
     });
     
     // Bot loading notification
     socket.on('botLoading', (data) => {
+      document.getElementById('statusDot').className = 'status-dot loading';
+      document.getElementById('statusText').className = 'status-text loading';
+      document.getElementById('statusText').textContent = 'Starting...';
       showDashboardAlert('⏳ Bot is starting...', 'info');
     });
   </script>

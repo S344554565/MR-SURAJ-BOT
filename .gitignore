@@ -1,7 +1,9 @@
-node_modules/
+# Sensitive files
+appstate.json
+key.txt
+Data/system/log.txt
+Data/system/account_issue.txt
+Fca_Database/
 botdata/
-cookies.txt
-Data/system/appstate.json
-Data/system/sessions.json
+node_modules/
 .env
-*.log

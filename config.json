@@ -1,8 +1,8 @@
 {
-  "BOTNAME": "MANO",
+  "BOTNAME": "CHAND",
   "PREFIX": ".",
   "ADMINBOT": [
-    "61585300332394"
+    "100012106845156"
   ],
   "REACT_DELETE_EMOJI": "😡",
   "PREFIX_ENABLED": true,
@@ -11,7 +11,5 @@
   "AUTO_ISLAMIC_POST": true,
   "AUTO_ALL_TAG": false,
   "ALL_TAG_INTERVAL": "1",
-  "TIMEZONE": "Asia/Karachi",
-  "ADMIN_USERNAME": "ANNU",
-  "ADMIN_PASSWORD": "CHAND-JAAN"
+  "TIMEZONE": "Asia/Karachi"
 }

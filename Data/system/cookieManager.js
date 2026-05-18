@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 
 const COOKIES_PATH = path.join(__dirname, '../../cookies.txt');
-const APPSTATE_PATH = path.join(__dirname, 'appstate.json');
+const APPSTATE_PATH = path.join(__dirname, '../../appstate.json');
 
 class CookieManager {
   /**

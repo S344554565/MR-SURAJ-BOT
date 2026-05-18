@@ -467,6 +467,27 @@ footer{position:relative;z-index:1;background:linear-gradient(112deg,#150900 0%,
 </footer>
 
 <script>
+// Auto-redirect if already logged in (handles page refresh)
+(function() {
+  const savedToken = sessionStorage.getItem('token');
+  if (savedToken) {
+    fetch('/api/validate-session', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ token: savedToken })
+    }).then(r => r.json()).then(d => {
+      if (d.valid) {
+        window.location.href = '/?token=' + savedToken;
+      } else {
+        sessionStorage.removeItem('auth');
+        sessionStorage.removeItem('token');
+      }
+    }).catch(() => {
+      sessionStorage.removeItem('auth');
+      sessionStorage.removeItem('token');
+    });
+  }
+})();
 (function(){
   if(window.innerWidth<=767)return;
   const c=document.getElementById('ptx');
