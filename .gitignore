@@ -1,9 +1,0 @@
-# Sensitive files
-appstate.json
-key.txt
-Data/system/log.txt
-Data/system/account_issue.txt
-Fca_Database/
-botdata/
-node_modules/
-.env
