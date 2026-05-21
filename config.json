@@ -1,10 +1,10 @@
 {
-  "BOTNAME": "CHAND",
-  "PREFIX": ".",
+  "BOTNAME": "bot",
+  "PREFIX": "/",
   "ADMINBOT": [
-    "100012106845156"
+    "61590047365336"
   ],
-  "REACT_DELETE_EMOJI": "😡",
+  "REACT_DELETE_EMOJI": "💙",
   "PREFIX_ENABLED": true,
   "ADMIN_ONLY_MODE": false,
   "APPROVE_ONLY": false,
