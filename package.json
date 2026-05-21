@@ -1,10 +1,10 @@
 {
-  "name": "CHAND-bot",
+  "name": "༒ᴍʀ ꜱᴜʀᴀᴊ🖤",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "bot": "node CHAND.js",
+    "bot": "༒ᴍʀ ꜱᴜʀᴀᴊ🖤.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -13,7 +13,7 @@
     "bot",
     "fca"
   ],
-  "author": "CHAND BOT",
+  "author": "༒ᴍʀ ꜱᴜʀᴀᴊ🖤",
   "license": "ISC",
   "description": "Facebook Messenger Bot with Islamic posts and group management",
   "dependencies": {
